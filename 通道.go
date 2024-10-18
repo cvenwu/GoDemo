@@ -1,20 +1,21 @@
 /*
  * @Author: cvenwu yirufeng@foxmail.com
- * @Date: 2024-10-14 19:50:43
+ * @Date: 2024-10-17 09:31:22
  * @LastEditors: cvenwu yirufeng@foxmail.com
- * @LastEditTime: 2024-10-15 15:08:51
+ * @LastEditTime: 2024-10-17 09:36:42
  * @Description:
  *
  * Copyright (c) 2024 by yirufeng@foxmail.com, All Rights Reserved.
  */
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "fmt"
 
 func main() {
-	fmt.Println("123")
-	os.Exit(3)
+	ch := make(chan string)
+
+	go func() { ch <- "ping" }()
+
+	msg := <-ch
+	fmt.Println("接收到消息：", msg)
 }
